@@ -1,19 +1,25 @@
 package com.app.carcharging.helper;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
+import android.support.design.widget.BottomNavigationView;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import com.app.carcharging.ActivityNearby;
+import com.app.carcharging.Dashboard;
+import com.app.carcharging.R;
+
+import java.lang.reflect.Field;
 
 public class CUtils {
 
@@ -221,6 +227,27 @@ public class CUtils {
         }
     }*/
 
+
+    public static void removeShiftMode(BottomNavigationView view) {
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+        try {
+            Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+            shiftingMode.setAccessible(true);
+            shiftingMode.setBoolean(menuView, false);
+            shiftingMode.setAccessible(false);
+            for (int i = 0; i < menuView.getChildCount(); i++) {
+                BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+                item.setShiftingMode(false);
+                // set once again checked value, so view will be updated
+                item.setChecked(item.getItemData().isChecked());
+            }
+        } catch (NoSuchFieldException e) {
+            Log.e("ERROR NO SUCH FIELD", "Unable to get shift mode field");
+        } catch (IllegalAccessException e) {
+            Log.e("ERROR ILLEGAL ALG", "Unable to change value of shift mode");
+        }
+    }
+
     public static String getOTP_Text(Context mContext) {
         SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
         String name = preferences.getString("otp_text", "");
@@ -246,5 +273,28 @@ public class CUtils {
         editor.putBoolean("isVerified", isVerified);
         editor.commit();
     }
+
+    public static void openBottomNav(int id, final Context mContext) {
+        cd = new ConnectionDetector(mContext);
+        if (id == R.id.navigation_home) {
+            CUtils.showToastShort(mContext, "Hello");
+            if (!(mContext instanceof Dashboard)) {
+                Intent intent = new Intent(mContext, Dashboard.class);
+                mContext.startActivity(intent);
+                //((Activity) mContext).overridePendingTransition(R.anim.anim_in_reverse, R.anim.anim_out_reverse);
+            }
+        }else if (id == R.id.navigation_nearyby) {
+            CUtils.showToastShort(mContext, "Hello");
+            if (!(mContext instanceof ActivityNearby)) {
+                Intent intent = new Intent(mContext, ActivityNearby.class);
+                mContext.startActivity(intent);
+                //((Activity) mContext).overridePendingTransition(R.anim.anim_in_reverse, R.anim.anim_out_reverse);
+            }
+        }
+
+
+
+    }
+
 
 }

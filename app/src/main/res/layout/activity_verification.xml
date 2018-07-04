@@ -1,0 +1,105 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_logo"
+            app:layout_heightPercent="17%"
+            app:layout_marginTopPercent="5%"
+            app:layout_widthPercent="80%" />
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_marginTopPercent="27%">
+
+            <TextView
+                android:id="@+id/et_email"
+                android:layout_centerHorizontal="true"
+                android:background="#e7e7e7"
+                android:gravity="center_horizontal|center_vertical"
+                android:singleLine="true"
+                android:text="TECHNICIAN"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/greencolor"
+                app:layout_heightPercent="12%"
+                app:layout_widthPercent="100%" />
+
+            <LinearLayout
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/et_email"
+                android:background="@color/greencolor"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_marginTopPercent="2%" />
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/v_view"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/divider1"
+                android:background="#e7e7e7"
+                android:padding="16dp"
+                app:layout_heightPercent="37%"
+                app:layout_marginTopPercent="3%">
+
+
+                <TextView
+                    android:id="@+id/tv_ver"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Verify Your Certificate"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black_1" />
+
+                <EditText
+                    android:id="@+id/et_ceritificateno"
+                    android:layout_below="@+id/tv_ver"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/whiteborder"
+                    android:hint="Certificate No."
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:layout_heightPercent="35%"
+                    app:layout_marginTopPercent="20%"
+                    app:layout_widthPercent="90%" />
+            </android.support.percent.PercentRelativeLayout>
+
+
+            <Button
+                android:id="@+id/btn_verify"
+                android:layout_below="@+id/v_view"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_button"
+                android:text="Verify"
+                android:textColor="@color/black"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="5%"
+                app:layout_widthPercent="60%" />
+
+            <Button
+                android:id="@+id/btn_center"
+                android:layout_below="@+id/btn_verify"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_button"
+                android:text="Certification Center"
+                android:textColor="@color/black"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="3%"
+                app:layout_widthPercent="60%" />
+
+
+        </android.support.percent.PercentRelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

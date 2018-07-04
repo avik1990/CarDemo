@@ -1,10 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".SplashScreen">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="match_parent">
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="20%">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_centerHorizontal="true"
+                app:layout_heightPercent="30%"
+                android:src="@drawable/ic_logo"
+                app:layout_marginTopPercent="5%"
+                app:layout_widthPercent="80%" />
+
+            <Button
+                android:id="@+id/btn_createaccount"
+                android:layout_below="@+id/iv_logo"
+                android:layout_centerHorizontal="true"
+                app:layout_heightPercent="7%"
+                android:text="Create account"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:background="@drawable/ic_button"
+                app:layout_marginTopPercent="10%"
+                app:layout_widthPercent="70%" />
+
+            <Button
+                android:id="@+id/btn_signin"
+                android:layout_below="@+id/btn_createaccount"
+                android:layout_centerHorizontal="true"
+                app:layout_heightPercent="7%"
+                android:text="Sign In"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:background="@drawable/ic_button"
+                app:layout_marginTopPercent="4%"
+                app:layout_widthPercent="70%" />
+        </android.support.percent.PercentRelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</layout>

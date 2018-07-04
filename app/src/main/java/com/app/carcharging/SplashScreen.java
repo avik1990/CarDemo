@@ -1,16 +1,15 @@
 package com.app.carcharging;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.app.carcharging.helper.CUtils;
 
 import net.alexandroid.gps.GpsStatusDetector;
 
@@ -22,12 +21,7 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
     Context mContext;
     boolean LOGIN_flag = false;
     private GpsStatusDetector mGpsStatusDetector;
-
     private static final int REQUEST_PERMISSIONS = 100;
-    private static final String PERMISSIONS_REQUIRED[] = new String[]{
-            android.Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.ACCESS_FINE_LOCATION
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +30,8 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
 
         mContext = this;
         LOGIN_flag = false;
-        //LOGIN_flag = CUtils.getisVerifiedPreferences(mContext);
         mGpsStatusDetector = new GpsStatusDetector(this);
-
-        if (LOGIN_flag) {
-            goToHomeActivity();
-        } else {
-            goToLoginActivity();
-        }
+        mGpsStatusDetector.checkGpsStatus();
     }
 
     @Override
@@ -54,11 +42,20 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
 
     @Override
     public void onGpsSettingStatus(boolean enabled) {
-
+        if (enabled) {
+            if (LOGIN_flag) {
+                goToHomeActivity();
+            } else {
+                goToLoginActivity();
+            }
+        } else {
+            CUtils.showToastShort(mContext, "Turn on GPS");
+        }
     }
 
     @Override
     public void onGpsAlertCanceledByUser() {
+        CUtils.showToastShort(mContext, "Can not Proceed with out GPS ON");
 
     }
 
@@ -97,7 +94,7 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
     }
 
 
-    public static void checkPermissions(Context mContext) {
+   /* public static void checkPermissions(Context mContext) {
         boolean permissionsGranted = checkPermission(PERMISSIONS_REQUIRED, mContext);
         if (permissionsGranted) {
             // Toast.makeText(this, "You've granted all required permissions!", Toast.LENGTH_SHORT).show();
@@ -111,7 +108,7 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
             }
             ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS_REQUIRED, REQUEST_PERMISSIONS);
         }
-    }
+    }*/
 
     public static boolean checkPermission(String permissions[], Context mContext) {
         for (String permission : permissions) {
