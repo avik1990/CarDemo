@@ -68,8 +68,10 @@
                 android:id="@+id/btn_proceed"
                 android:layout_below="@+id/divider0"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_button"
+                android:background="@drawable/rounder_corner_buttons"
                 android:text="Proceed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#ffffff"
                 app:layout_heightPercent="7%"
                 app:layout_marginTopPercent="5%"
                 app:layout_widthPercent="60%" />

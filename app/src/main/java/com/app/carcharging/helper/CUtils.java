@@ -42,14 +42,6 @@ public class CUtils {
         toast.show();
     }
 
-    public static ProgressDialog initializeProgressDialog(Context context) {
-        ProgressDialog pDialog;
-        pDialog = new ProgressDialog(context);
-        pDialog.setCancelable(false);
-        pDialog.setCanceledOnTouchOutside(false);
-        pDialog.setMessage("Please wait");
-        return pDialog;
-    }
 
     public static void phoneCall(String number, Context mContext) {
         TelephonyManager telMgr = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
@@ -69,6 +61,14 @@ public class CUtils {
                 }
                 break;
         }
+    }
+
+    public static ProgressDialog initProgressdialog(Context mContext,String Msg){
+        ProgressDialog progressDialog=new ProgressDialog(mContext);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage(Msg);
+        return progressDialog;
     }
 
     public static String getdeviceid(Context mContext) {
@@ -260,6 +260,40 @@ public class CUtils {
         editor.putString("otp_text", cat);
         editor.commit();
     }
+
+
+    public static String getUserid(Context mContext) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        String name = preferences.getString("user_id", "");
+        return name;
+    }
+
+    public static void setUserid(Context mContext, String cat) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("user_id", cat);
+        editor.commit();
+    }
+
+    public static String getUsername(Context mContext) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        String name = preferences.getString("user_name", "");
+        return name;
+    }
+
+    public static void setUsername(Context mContext, String cat) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("user_name", cat);
+        editor.commit();
+    }
+
+
+
+
+
+
+
 
     public static boolean getisVerifiedPreferences(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode

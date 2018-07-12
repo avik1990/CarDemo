@@ -20,15 +20,17 @@
             android:gravity="center"
             app:layout_marginTopPercent="35%">
 
-
             <EditText
                 android:id="@+id/et_email"
                 android:layout_centerHorizontal="true"
                 android:background="@null"
-                android:hint="E-mail address"
+                android:hint="Mobile No."
+                android:inputType="number"
+                android:maxLength="14"
+                android:textColor="@color/black"
                 android:singleLine="true"
                 android:textColorHint="@color/black"
-                app:layout_heightPercent="15%"
+                app:layout_heightPercent="13%"
                 app:layout_widthPercent="80%" />
 
             <LinearLayout
@@ -50,7 +52,7 @@
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                app:layout_heightPercent="15%"
+                app:layout_heightPercent="13%"
                 app:layout_marginTopPercent="5%"
                 app:layout_widthPercent="80%" />
 
@@ -67,8 +69,10 @@
                 android:id="@+id/btn_signin"
                 android:layout_below="@+id/divider2"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_button"
+                android:background="@drawable/rounder_corner_buttons"
                 android:text="Sign In"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
                 app:layout_heightPercent="10%"
                 app:layout_marginTopPercent="5%"
                 app:layout_widthPercent="80%" />
@@ -102,6 +106,8 @@
                 android:layout_below="@+id/divider3"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
+                fontPath="@null"
+                android:fontFamily="sans-serif"
                 android:text="New here? Sign Up"
                 android:textColor="@color/black"
                 app:layout_marginTopPercent="5%" />

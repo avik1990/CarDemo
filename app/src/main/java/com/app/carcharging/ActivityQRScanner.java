@@ -19,12 +19,14 @@ public class ActivityQRScanner extends AppCompatActivity implements View.OnClick
     Context mContext;
     ActivityScannerBinding binding;
     private ZXingScannerView mScannerView;
+    String country_id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mContext = this;
+        country_id = getIntent().getExtras().getString("country_id");
         initview();
 
     }
@@ -41,6 +43,8 @@ public class ActivityQRScanner extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         if (v == binding.tvFootertext) {
             Intent i = new Intent(mContext, ActivityRegisterAfterScan.class);
+            i.putExtra("country_id", country_id);
+            i.putExtra("from", "ActivityQRScanner");
             startActivity(i);
             finish();
         }

@@ -9,6 +9,9 @@ import android.view.View;
 
 import com.app.carcharging.databinding.ActivityLoginoptionsBinding;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class LoginOptions extends AppCompatActivity implements View.OnClickListener {
 
     Context mContext;
@@ -17,7 +20,11 @@ public class LoginOptions extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/univers.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         mContext = this;
         initview();
 
@@ -27,6 +34,11 @@ public class LoginOptions extends AppCompatActivity implements View.OnClickListe
         binding = DataBindingUtil.setContentView(this, R.layout.activity_loginoptions);
         binding.btnCreateaccount.setOnClickListener(this);
         binding.btnSignin.setOnClickListener(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override

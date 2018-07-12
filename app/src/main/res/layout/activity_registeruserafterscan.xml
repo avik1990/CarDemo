@@ -28,7 +28,7 @@
             android:layout_below="@+id/iv_logo"
             app:layout_marginTopPercent="3%">
 
-            <RelativeLayout
+            <android.support.percent.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -38,7 +38,6 @@
                     android:id="@+id/et_phoneno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/spinnerCustom"
                     android:layout_centerHorizontal="true"
                     android:background="@null"
                     android:hint="Phone no."
@@ -52,6 +51,7 @@
                     android:id="@+id/divider1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
                     android:layout_below="@+id/et_phoneno"
                     android:background="@color/greencolor"
                     android:orientation="horizontal" />
@@ -74,6 +74,7 @@
                     android:id="@+id/divider2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
                     android:layout_below="@+id/et_password"
                     android:background="@color/greencolor"
                     android:orientation="horizontal"
@@ -98,6 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/et_email"
+                    android:layout_marginTop="5dp"
                     android:background="@color/greencolor"
                     android:orientation="horizontal"
                     app:layout_marginTopPercent="1%" />
@@ -116,6 +118,31 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
+                <android.support.percent.PercentFrameLayout
+                    android:id="@+id/v_sp_1"
+                    android:layout_below="@+id/tv_role"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    app:layout_heightPercent="10%"
+                    app:layout_widthPercent="95%">
+
+                    <Spinner
+                        android:id="@+id/spinnerCustom"
+                        style="@style/spinnerItemStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:drawableRight="@drawable/arrow_dropdown"
+                        android:popupBackground="#ffffff" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:src="@drawable/arrow_dropdown" />
+                </android.support.percent.PercentFrameLayout>
 
                 <RadioGroup
                     android:id="@+id/rg_group"
@@ -125,7 +152,8 @@
                     android:layout_centerHorizontal="true"
                     android:orientation="vertical"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingRight="16dp"
+                    android:visibility="gone">
 
                     <RadioButton
                         android:id="@+id/rb_user"
@@ -172,7 +200,7 @@
                     android:id="@+id/divider10"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@+id/rg_group"
+                    android:layout_below="@+id/v_sp_1"
                     android:layout_marginTop="4dp"
                     android:background="@color/greencolor"
                     android:orientation="horizontal" />
@@ -234,8 +262,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="40dp"
-                        android:background="@drawable/ic_button"
-                        android:text="Proceed" />
+                        android:background="@drawable/rounder_corner_buttons"
+                        android:text="Proceed"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/tv_signin"
@@ -243,12 +273,12 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/btn_signup"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="25dp"
                         android:gravity="center"
                         android:text="Already have an account? Sign In"
                         android:textColor="@color/black" />
                 </RelativeLayout>
-            </RelativeLayout>
+            </android.support.percent.PercentRelativeLayout>
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>
 </layout>

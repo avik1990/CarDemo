@@ -65,10 +65,10 @@ public class ActivityCarDetails extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if(position!=0) {
+                if (position != 0) {
                     st_manufacturer = binding.spVersion.getSelectedItem().toString();
                     CUtils.showToastShort(mContext, st_manufacturer);
-                }else{
+                } else {
                    /* binding.vSp2.setVisibility(View.GONE);
                     binding.divider1.setVisibility(View.GONE);*/
                 }
@@ -101,10 +101,8 @@ public class ActivityCarDetails extends AppCompatActivity implements View.OnClic
 
             }
         });*/
-
         ////////////////////////////////////
-
-     // binding.btnProceed.setOnClickListener(this);
+        // binding.btnProceed.setOnClickListener(this);
         binding.toolbar.ivBack.setOnClickListener(this);
         binding.vSummary.setOnClickListener(this);
         binding.vSpecs.setOnClickListener(this);
@@ -113,39 +111,39 @@ public class ActivityCarDetails extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-         if (v == binding.toolbar.ivBack) {
+        if (v == binding.toolbar.ivBack) {
             onBackPressed();
-        }else if(v==binding.vSummary){
-             binding.vSummary.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1_selected));
-             binding.vSpecs.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_2_unselected));
-             binding.vFeatures.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_3));
-             binding.tvSummary.setTextColor(getResources().getColor(R.color.white));
-             binding.tvSpecs.setTextColor(getResources().getColor(R.color.black));
-             binding.tvFeatures.setTextColor(getResources().getColor(R.color.black));
-             binding.tv1.setVisibility(View.VISIBLE);
-             binding.tv2.setVisibility(View.GONE);
-             binding.tv3.setVisibility(View.GONE);
-         }else if(v==binding.vSpecs){
-             binding.vSummary.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1));
-             binding.vSpecs.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_2));
-             binding.vFeatures.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_3));
-             binding.tvSpecs.setTextColor(getResources().getColor(R.color.white));
-             binding.tvSummary.setTextColor(getResources().getColor(R.color.black));
-             binding.tvFeatures.setTextColor(getResources().getColor(R.color.black));
-             binding.tv1.setVisibility(View.GONE);
-             binding.tv2.setVisibility(View.VISIBLE);
-             binding.tv3.setVisibility(View.GONE);
-         }else if(v==binding.vFeatures){
-             binding.vSummary.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1));
-             binding.vSpecs.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_2_unselected));
-             binding.vFeatures.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2));
-             binding.tvFeatures.setTextColor(getResources().getColor(R.color.white));
-             binding.tvSpecs.setTextColor(getResources().getColor(R.color.black));
-             binding.tvSummary.setTextColor(getResources().getColor(R.color.black));
-             binding.tv1.setVisibility(View.GONE);
-             binding.tv2.setVisibility(View.GONE);
-             binding.tv3.setVisibility(View.VISIBLE);
-         }
+        } else if (v == binding.vSummary) {
+            binding.vSummary.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1_selected));
+            binding.vSpecs.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_2_unselected));
+            binding.vFeatures.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_3));
+            binding.tvSummary.setTextColor(getResources().getColor(R.color.white));
+            binding.tvSpecs.setTextColor(getResources().getColor(R.color.black));
+            binding.tvFeatures.setTextColor(getResources().getColor(R.color.black));
+            binding.tv1.setVisibility(View.VISIBLE);
+            binding.tv2.setVisibility(View.GONE);
+            binding.tv3.setVisibility(View.GONE);
+        } else if (v == binding.vSpecs) {
+            binding.vSummary.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1));
+            binding.vSpecs.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_2));
+            binding.vFeatures.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_3));
+            binding.tvSpecs.setTextColor(getResources().getColor(R.color.white));
+            binding.tvSummary.setTextColor(getResources().getColor(R.color.black));
+            binding.tvFeatures.setTextColor(getResources().getColor(R.color.black));
+            binding.tv1.setVisibility(View.GONE);
+            binding.tv2.setVisibility(View.VISIBLE);
+            binding.tv3.setVisibility(View.GONE);
+        } else if (v == binding.vFeatures) {
+            binding.vSummary.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1));
+            binding.vSpecs.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_2_unselected));
+            binding.vFeatures.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2));
+            binding.tvFeatures.setTextColor(getResources().getColor(R.color.white));
+            binding.tvSpecs.setTextColor(getResources().getColor(R.color.black));
+            binding.tvSummary.setTextColor(getResources().getColor(R.color.black));
+            binding.tv1.setVisibility(View.GONE);
+            binding.tv2.setVisibility(View.GONE);
+            binding.tv3.setVisibility(View.VISIBLE);
+        }
     }
 
 

@@ -13,4 +13,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_nearby">Map</string>
+    <string name="base_url">http://223.31.109.234/CarChargingApi/api/</string>
 </resources>

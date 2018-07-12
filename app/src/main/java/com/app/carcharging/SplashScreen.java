@@ -29,7 +29,7 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
         setContentView(R.layout.activity_splash_screen);
 
         mContext = this;
-        LOGIN_flag = false;
+        LOGIN_flag = CUtils.getisVerifiedPreferences(mContext);
         mGpsStatusDetector = new GpsStatusDetector(this);
         mGpsStatusDetector.checkGpsStatus();
     }
@@ -67,6 +67,7 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
                     sleep(SPLASH_TIME);
                     Intent i = new Intent(mContext, Dashboard.class);
                     startActivity(i);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -84,6 +85,7 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
                     sleep(SPLASH_TIME);
                     Intent i = new Intent(mContext, LoginOptions.class);
                     startActivity(i);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
                 } catch (Exception e) {
                     e.printStackTrace();
