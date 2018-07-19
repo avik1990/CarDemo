@@ -41,7 +41,7 @@ public class RegisterResponse {
         this.message = message;
     }
 
-    public class Datum{
+    public class Datum {
         @SerializedName("userid")
         @Expose
         public String userid;

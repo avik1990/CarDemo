@@ -1,7 +1,12 @@
 package com.app.carcharging.retrofit.api;
 
+import com.app.carcharging.pojo.CertificateVeriPost;
+import com.app.carcharging.pojo.CertificateVeriResponse;
 import com.app.carcharging.pojo.CertificationMap;
 import com.app.carcharging.pojo.Country;
+import com.app.carcharging.pojo.GetCarManufacturer;
+import com.app.carcharging.pojo.GetCarModelFilterSet;
+import com.app.carcharging.pojo.GetCarModelFilterSetPost;
 import com.app.carcharging.pojo.GetUserRole;
 import com.app.carcharging.pojo.OtpPost;
 import com.app.carcharging.pojo.RegisterPojo;
@@ -33,5 +38,12 @@ public interface ApiServices {
     @POST("User/UserLogin")
     Call<RegisterResponse> VerifyOTP(@Body OtpPost otpPost);
 
+    @POST("NewCar/GetCarManufacturer")
+    Call<GetCarManufacturer> getCarManufacturer();
 
+    @POST("NewCar/GetCarModelFilterSet")
+    Call<GetCarModelFilterSet> GetCarModelFilterSet(@Body GetCarModelFilterSetPost GetCarModelFilterSetPost);
+
+    @POST("Certificate/VerifyCertificate")
+    Call<CertificateVeriResponse> VerifyCertificate(@Body CertificateVeriPost otpPost);
 }

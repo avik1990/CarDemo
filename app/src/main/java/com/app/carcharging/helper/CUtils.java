@@ -1,6 +1,7 @@
 package com.app.carcharging.helper;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.app.carcharging.ActivityNearby;
@@ -63,8 +66,8 @@ public class CUtils {
         }
     }
 
-    public static ProgressDialog initProgressdialog(Context mContext,String Msg){
-        ProgressDialog progressDialog=new ProgressDialog(mContext);
+    public static ProgressDialog initProgressdialog(Context mContext, String Msg) {
+        ProgressDialog progressDialog = new ProgressDialog(mContext);
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage(Msg);
@@ -268,12 +271,39 @@ public class CUtils {
         return name;
     }
 
+    public static void setPrimaryPhoneid(Context mContext, String cat) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("p_phone_no", cat);
+        editor.commit();
+    }
+
+    public static String getPrimaryPhoneid(Context mContext) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        String name = preferences.getString("p_phone_no", "");
+        return name;
+    }
+
     public static void setUserid(Context mContext, String cat) {
         SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("user_id", cat);
         editor.commit();
     }
+
+    public static String getRoleid(Context mContext) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        String name = preferences.getString("role_id", "");
+        return name;
+    }
+
+    public static void setRoleid(Context mContext, String cat) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("role_id", cat);
+        editor.commit();
+    }
+
 
     public static String getUsername(Context mContext) {
         SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
@@ -289,12 +319,6 @@ public class CUtils {
     }
 
 
-
-
-
-
-
-
     public static boolean getisVerifiedPreferences(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
         boolean flag = loginPreferences.getBoolean("isVerified", false);
@@ -308,26 +332,65 @@ public class CUtils {
         editor.commit();
     }
 
-    public static void openBottomNav(int id, final Context mContext) {
+
+    public static boolean getisCertiVerifiedPreferences(Context mContext) {
+        SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        boolean flag = loginPreferences.getBoolean("cisVerified", false);
+        return flag;
+    }
+
+    public static void setisCertiVerfiedPreferences(Context mContext, boolean isVerified) {
+        SharedPreferences preferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("cisVerified", isVerified);
+        editor.commit();
+    }
+
+
+    public static void openBottomNav(int id, final Context mContext, BottomNavigationView navigationView) {
         cd = new ConnectionDetector(mContext);
         if (id == R.id.navigation_home) {
-            CUtils.showToastShort(mContext, "Hello");
             if (!(mContext instanceof Dashboard)) {
                 Intent intent = new Intent(mContext, Dashboard.class);
                 mContext.startActivity(intent);
-                //((Activity) mContext).overridePendingTransition(R.anim.anim_in_reverse, R.anim.anim_out_reverse);
+                ((Activity) mContext).overridePendingTransition(0, 0);
             }
-        }else if (id == R.id.navigation_nearyby) {
-            CUtils.showToastShort(mContext, "Hello");
+        } else if (id == R.id.navigation_nearyby) {
             if (!(mContext instanceof ActivityNearby)) {
                 Intent intent = new Intent(mContext, ActivityNearby.class);
                 mContext.startActivity(intent);
-                //((Activity) mContext).overridePendingTransition(R.anim.anim_in_reverse, R.anim.anim_out_reverse);
+                ((Activity) mContext).overridePendingTransition(0, 0);
             }
+        }else if(id == R.id.navigation_more){
+
+            PopupMenu popup = new PopupMenu(mContext, navigationView.findViewById(R.id.navigation_more));
+            //Inflating the Popup using xml file
+            popup.getMenuInflater().inflate(R.menu.option_menu, popup.getMenu());
+
+            //registering popup with OnMenuItemClickListener
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                public boolean onMenuItemClick(MenuItem item) {
+                    Toast.makeText(mContext,"You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+
+            popup.show();
         }
 
 
+    }
 
+
+    public static void updateNavigationBarState(int actionId, BottomNavigationView navigationView) {
+        navigationView.setSelectedItemId(actionId);
+
+        /*Menu menu = navigationView.getMenu();
+
+        for (int i = 0, size = menu.size(); i < size; i++) {
+            MenuItem item = menu.getItem(i);
+            item.setChecked(item.getItemId() == actionId);
+        }*/
     }
 
 

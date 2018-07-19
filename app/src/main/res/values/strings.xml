@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CarCharging</string>
+    <string name="app_name">Car Charging</string>
 
     <string-array name="country">
         <item>Please select country</item>
@@ -8,6 +8,7 @@
         <item>England</item>
         <item>Others</item>
     </string-array>
+
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

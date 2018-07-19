@@ -16,6 +16,18 @@
         <item name="pinViewStyle">@style/PinWidget.PinView</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.NoTranslucent">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <style name="spinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
         <item name="android:textColor">#000000</item>

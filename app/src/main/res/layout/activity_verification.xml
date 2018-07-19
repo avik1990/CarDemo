@@ -81,8 +81,9 @@
                 android:id="@+id/btn_verify"
                 android:layout_below="@+id/v_view"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_button"
+                android:background="@drawable/rounder_corner_buttons"
                 android:text="Verify"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 app:layout_heightPercent="10%"
                 app:layout_marginTopPercent="5%"
@@ -92,14 +93,13 @@
                 android:id="@+id/btn_center"
                 android:layout_below="@+id/btn_verify"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_button"
+                android:background="@drawable/rounder_corner_buttons"
                 android:text="Certification Center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 app:layout_heightPercent="10%"
                 app:layout_marginTopPercent="3%"
                 app:layout_widthPercent="60%" />
-
-
         </android.support.percent.PercentRelativeLayout>
     </android.support.percent.PercentRelativeLayout>
 </layout>

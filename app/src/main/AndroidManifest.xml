@@ -27,8 +27,9 @@
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,72 +40,79 @@
         <activity
             android:name=".ActivityNewCar"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ActivityCarDetails"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".LoginOptions"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Dashboard"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".SignIn"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ActivitySelectCountry"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ActivityQRScanner"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ActivityRegisterAfterScan"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ActivtyOtp"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent" />
 
         <activity
             android:name=".ActivityNearby"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent" />
 
         <activity
             android:name=".TechnicianVerification"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent" />
 
         <activity
             android:name=".ActivtyJobListing"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent" />
 
         <activity
             android:name=".ActivityCertificationCenter"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent" />
 
         <activity
             android:name=".ActivityCertificationNavigation"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent" />
+
+        <activity
+            android:name=".ActivityCharging"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

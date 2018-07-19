@@ -81,6 +81,8 @@ public class ActivityRegisterAfterScan extends AppCompatActivity implements View
     private void initview() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_registeruserafterscan);
         binding.btnSignup.setOnClickListener(this);
+        binding.ivBack.setOnClickListener(this);
+        binding.tvSignin.setOnClickListener(this);
 
         String str = "<font color='#000000'>Email Address </font> <font color='#8eac28'> (optional) </font> </a>";
         binding.etEmail.setHint(Html.fromHtml(str));
@@ -90,7 +92,6 @@ public class ActivityRegisterAfterScan extends AppCompatActivity implements View
         CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/Univers_bold.otf"));
         sBuilder.setSpan(typefaceSpan, 25, 32, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         binding.tvSignin.setText(sBuilder, TextView.BufferType.SPANNABLE);
-
 
 
         binding.rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -144,8 +145,11 @@ public class ActivityRegisterAfterScan extends AppCompatActivity implements View
     public void onClick(View v) {
         if (v == binding.btnSignup) {
             validateform();
-            /*Intent i = new Intent(mContext, Dashboard.class);
-            startActivity(i);*/
+        } else if (v == binding.ivBack) {
+            onBackPressed();
+        } else if (v == binding.tvSignin) {
+            Intent i = new Intent(mContext, SignIn.class);
+            startActivity(i);
         }
     }
 
@@ -213,17 +217,21 @@ public class ActivityRegisterAfterScan extends AppCompatActivity implements View
             public void onResponse(Call<GetUserRole> call, retrofit2.Response<GetUserRole> response) {
                 if (response.isSuccessful()) {
                     rList = response.body();
-                    if (rList.getData().size() > 0) {
-                        role_name = new String[rList.getData().size() + 1];
-                        role_id = new String[rList.getData().size() + 1];
-                        role_name[0] = "Select Role";
-                        role_id[0] = "";
+                    if (!rList.getStatus().equalsIgnoreCase("0")) {
+                        if (rList.getData().size() > 0) {
+                            role_name = new String[rList.getData().size() + 1];
+                            role_id = new String[rList.getData().size() + 1];
+                            role_name[0] = "Select Role";
+                            role_id[0] = "";
 
-                        for (int i = 0; i < rList.getData().size(); i++) {
-                            role_name[i + 1] = rList.getData().get(i).getRolename();
-                            role_id[i + 1] = rList.getData().get(i).getRoleid();
+                            for (int i = 0; i < rList.getData().size(); i++) {
+                                role_name[i + 1] = rList.getData().get(i).getRolename();
+                                role_id[i + 1] = rList.getData().get(i).getRoleid();
+                            }
+                            inflatespinner();
                         }
-                        inflatespinner();
+                    }else {
+                        CUtils.showToastShort(mContext,rList.getMessage());
                     }
                 }
                 pdialog.dismiss();
@@ -288,7 +296,7 @@ public class ActivityRegisterAfterScan extends AppCompatActivity implements View
                         i.putExtra("st_rid", st_rid);
                         startActivity(i);
                     } else {
-
+                        CUtils.showToastLong(mContext, rp.getMessage());
                     }
                 }
                 pdialog.dismiss();

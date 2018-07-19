@@ -16,6 +16,9 @@ import com.app.carcharging.pojo.Jobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ActivtyJobListing extends AppCompatActivity implements View.OnClickListener, ClickEventLisener {
 
     Context mContext;
@@ -27,10 +30,19 @@ public class ActivtyJobListing extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/univers.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         mContext = this;
         initview();
         showList();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private void initview() {

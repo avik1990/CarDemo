@@ -58,10 +58,10 @@
                 android:id="@+id/btn_signin"
                 android:layout_below="@+id/pinView"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_button"
                 android:text="Verify"
                 android:textAllCaps="false"
                 android:textColor="#000000"
+                android:background="@drawable/rounder_corner_buttons"
                 app:layout_heightPercent="7%"
                 app:layout_marginTopPercent="4%"
                 app:layout_widthPercent="70%" />

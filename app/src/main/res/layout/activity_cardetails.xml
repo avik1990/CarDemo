@@ -85,10 +85,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight=".8"
+                                android:layout_weight=".7"
+                                fontPath="fonts/Univers_bold.otf"
                                 android:gravity="center_vertical"
                                 android:text="Version"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="@color/greencolor" />
 
                             <TextView
@@ -106,7 +107,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_weight="1.2">
+                                android:layout_weight="1.3">
 
                                 <Spinner
                                     android:id="@+id/sp_version"
@@ -136,10 +137,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight=".8"
+                                android:layout_weight=".7"
                                 android:gravity="center_vertical"
+                                fontPath="fonts/Univers_bold.otf"
                                 android:text="City"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="@color/greencolor" />
 
                             <TextView
@@ -156,7 +158,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_weight="1.2">
+                                android:layout_weight="1.3">
 
                                 <Spinner
                                     android:id="@+id/sp_city"
@@ -186,10 +188,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight=".8"
+                                android:layout_weight=".7"
                                 android:gravity="center_vertical"
                                 android:text="Color"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                fontPath="fonts/Univers_bold.otf"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="@color/greencolor" />
 
                             <TextView
@@ -206,7 +209,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_weight="1.2">
+                                android:layout_weight="1.3">
 
                                 <Spinner
                                     android:id="@+id/sp_color"
@@ -236,10 +239,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight=".8"
+                                android:layout_weight=".7"
                                 android:gravity="center_vertical"
                                 android:text="Fuel Type"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                fontPath="fonts/Univers_bold.otf"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="@color/greencolor" />
 
                             <TextView
@@ -256,7 +260,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_weight="1.2">
+                                android:layout_weight="1.3">
 
                                 <Spinner
                                     android:id="@+id/sp_fueltype"
@@ -286,10 +290,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight=".8"
+                                android:layout_weight=".7"
                                 android:gravity="center_vertical"
                                 android:text="Transmission"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                fontPath="fonts/Univers_bold.otf"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="@color/greencolor" />
 
                             <TextView
@@ -306,7 +311,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_weight="1.2">
+                                android:layout_weight="1.3">
 
                                 <Spinner
                                     android:id="@+id/sp_transmission"
@@ -435,7 +440,7 @@
                     android:layout_height="40dp"
                     android:layout_below="@+id/v_container"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/ic_button"
+                    android:background="@drawable/rounder_corner_buttons"
                     android:text="Proceed"
                     android:textColor="#ffffff" />
             </RelativeLayout>

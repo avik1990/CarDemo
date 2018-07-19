@@ -21,6 +21,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ActivtyOtp extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,10 +31,16 @@ public class ActivtyOtp extends AppCompatActivity implements View.OnClickListene
     String st_rid = "", phoneno = "", email = "", country_id = "", user_id = "", st_password = "", otp = "";
     ProgressDialog pdialog;
     boolean click_success = false;
+    boolean is_otp_verified = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/univers.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         mContext = this;
 
         pdialog = CUtils.initProgressdialog(mContext, "Loading...");
@@ -43,8 +51,13 @@ public class ActivtyOtp extends AppCompatActivity implements View.OnClickListene
         email = getIntent().getExtras().getString("email");
         otp = getIntent().getExtras().getString("otp");
         country_id = getIntent().getExtras().getString("country_id");
-        CUtils.showToastShort(mContext,otp);
+        CUtils.showToastShort(mContext, otp);
         initview();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private void initview() {
@@ -75,13 +88,6 @@ public class ActivtyOtp extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 4) {
-                    /*String Userid;
-                    String otpstatus;
-                    String contactno;
-                    String password;
-                    String latitude;
-                    String longitude;*/
-
                     click_success = true;
                     if (otp.equalsIgnoreCase(binding.pinView.getText().toString().trim())) {
                         OtpPost otpPost = new OtpPost();
@@ -114,12 +120,18 @@ public class ActivtyOtp extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         if (v == binding.btnSignin) {
             if (click_success) {
-                if (st_rid.equalsIgnoreCase("4")) {
-                    Intent i = new Intent(mContext, TechnicianVerification.class);
-                    startActivity(i);
-                } else {
-                    Intent i = new Intent(mContext, Dashboard.class);
-                    startActivity(i);
+                if (is_otp_verified) {
+                    if (st_rid.equalsIgnoreCase("4")) {
+                        Intent i = new Intent(mContext, TechnicianVerification.class);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        startActivity(i);
+                        //finishAffinity();
+                    } else {
+                        Intent i = new Intent(mContext, Dashboard.class);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        startActivity(i);
+                        finishAffinity();
+                    }
                 }
             } else {
                 CUtils.showToastShort(mContext, "Please enter the OTP");
@@ -145,15 +157,24 @@ public class ActivtyOtp extends AppCompatActivity implements View.OnClickListene
                 if (response.isSuccessful()) {
                     RegisterResponse rp = response.body();
                     if (rp.getStatus().equalsIgnoreCase("1")) {
-                        CUtils.setisVerfiedPreferences(mContext, true);
-                        CUtils.setUserid(mContext, rp.getData().get(0).getUserid());
-                        CUtils.setUsername(mContext, rp.getData().get(0).getUsername());
-                        Intent i = new Intent(mContext, Dashboard.class);
-                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                        startActivity(i);
-                        finishAffinity();
-                    } else {
 
+                        is_otp_verified = true;
+                        if (st_rid.equalsIgnoreCase("4")) {
+                            Intent i = new Intent(mContext, TechnicianVerification.class);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            startActivity(i);
+                            finishAffinity();
+                        } else {
+                            CUtils.setisVerfiedPreferences(mContext, true);
+                            CUtils.setUserid(mContext, rp.getData().get(0).getUserid());
+                            CUtils.setUsername(mContext, rp.getData().get(0).getUsername());
+                            Intent i = new Intent(mContext, Dashboard.class);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            startActivity(i);
+                            finishAffinity();
+                        }
+                    } else {
+                        is_otp_verified = false;
                     }
                 }
                 pdialog.dismiss();

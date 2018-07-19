@@ -14,7 +14,6 @@ import com.app.carcharging.pojo.Jobs;
 
 import java.util.List;
 
-
 /**
  * Created by user2 on 15-05-2018.
  */

@@ -167,18 +167,22 @@ public class ActivitySelectCountry extends AppCompatActivity implements View.OnC
             public void onResponse(Call<Country> call, retrofit2.Response<Country> response) {
                 if (response.isSuccessful()) {
                     cList = response.body();
-                    if (cList.getData().size() > 0) {
-                        country_name = new String[cList.getData().size() + 1];
-                        country_id = new String[cList.getData().size() + 1];
-                        country_name[0] = "Select Country";
-                        country_id[0] = "";
+                    if (!cList.status.equalsIgnoreCase("0")) {
+                        if (cList.getData().size() > 0) {
+                            country_name = new String[cList.getData().size() + 1];
+                            country_id = new String[cList.getData().size() + 1];
+                            country_name[0] = "Select Country";
+                            country_id[0] = "";
 
-                        for (int i = 0; i < cList.getData().size(); i++) {
-                            country_name[i + 1] = cList.getData().get(i).getCountryname();
-                            country_id[i + 1] = cList.getData().get(i).getCountryid();
+                            for (int i = 0; i < cList.getData().size(); i++) {
+                                country_name[i + 1] = cList.getData().get(i).getCountryname();
+                                country_id[i + 1] = cList.getData().get(i).getCountryid();
+                            }
+                            inflatespinner();
+                            //Toast.makeText(mContext, "" + cList.getData().size(), Toast.LENGTH_SHORT).show();
                         }
-                        inflatespinner();
-                        //Toast.makeText(mContext, "" + cList.getData().size(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        CUtils.showToastShort(mContext, cList.getMessage());
                     }
                 }
                 pdialog.dismiss();
@@ -202,7 +206,6 @@ public class ActivitySelectCountry extends AppCompatActivity implements View.OnC
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i != 0) {
                     st_cid = cList.getData().get(i - 1).getCountryid();
-                    CUtils.showToastShort(mContext, st_cid);
                 } else {
                     st_cid = "";
                 }

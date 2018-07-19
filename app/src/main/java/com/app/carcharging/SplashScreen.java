@@ -65,10 +65,25 @@ public class SplashScreen extends AppCompatActivity implements GpsStatusDetector
             public void run() {
                 try {
                     sleep(SPLASH_TIME);
-                    Intent i = new Intent(mContext, Dashboard.class);
-                    startActivity(i);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    finish();
+                    if (CUtils.getRoleid(mContext).equalsIgnoreCase("4")) {
+                        if (!CUtils.getisCertiVerifiedPreferences(mContext)) {
+                            Intent i = new Intent(mContext, TechnicianVerification.class);
+                            startActivity(i);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            finish();
+                        } else {
+                            Intent i = new Intent(mContext, Dashboard.class);
+                            startActivity(i);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            finish();
+                        }
+                    } else {
+                        Intent i = new Intent(mContext, Dashboard.class);
+                        startActivity(i);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        finish();
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

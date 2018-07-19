@@ -115,7 +115,7 @@
                 android:id="@+id/btn_proceed"
                 android:layout_below="@+id/divider1"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_button"
+                android:background="@drawable/rounder_corner_buttons"
                 android:text="Find your car"
                 android:textColor="@color/white"
                 app:layout_heightPercent="7%"

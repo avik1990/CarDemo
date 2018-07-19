@@ -12,12 +12,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
-public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
+public class CustInfoWindowMap implements GoogleMap.InfoWindowAdapter {
 
     private Context mContext;
     private OnInfoWindowElemTouchListener infoButtonListener;
 
-    public CustomInfoWindowGoogleMap(Context ctx) {
+    public CustInfoWindowMap(Context ctx) {
         mContext = ctx;
     }
 

@@ -13,6 +13,8 @@ import com.app.carcharging.databinding.ActivityScannerBinding;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ActivityQRScanner extends AppCompatActivity implements View.OnClickListener, ZXingScannerView.ResultHandler {
 
@@ -24,11 +26,19 @@ public class ActivityQRScanner extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/univers.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         mContext = this;
         country_id = getIntent().getExtras().getString("country_id");
         initview();
+    }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private void initview() {
@@ -36,6 +46,7 @@ public class ActivityQRScanner extends AppCompatActivity implements View.OnClick
         binding = DataBindingUtil.setContentView(this, R.layout.activity_scanner);
         binding.contentFrame.addView(mScannerView);
         binding.tvFootertext.setOnClickListener(this);
+        binding.toolbar.ivBack.setOnClickListener(this);
         /// binding.tvSignup.setOnClickListener(this);
     }
 
@@ -47,6 +58,8 @@ public class ActivityQRScanner extends AppCompatActivity implements View.OnClick
             i.putExtra("from", "ActivityQRScanner");
             startActivity(i);
             finish();
+        } else if (v == binding.toolbar.ivBack) {
+            onBackPressed();
         }
     }
 

@@ -3,11 +3,15 @@ package com.app.carcharging;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.app.carcharging.databinding.ActivityChargingBinding;
 import com.app.carcharging.helper.CUtils;
 import com.app.carcharging.helper.ConnectionDetector;
 import com.app.carcharging.pojo.CertificationMap;
@@ -30,31 +34,57 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ActivityCertificationCenter extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
+public class ActivityCharging extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, View.OnClickListener {
 
     private GoogleMap mMap;
     ConnectionDetector cd;
     Context mContext;
     ProgressDialog pDialog;
-    CertificationMap certificationMap;
     private List<LatLng> bangaloreRoute = new ArrayList<>();
+    ActivityChargingBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_certification);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/univers.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         mContext = this;
+
+        initview();
+    }
+
+    private void initview() {
+        cd = new ConnectionDetector(mContext);
         pDialog = new ProgressDialog(mContext);
         pDialog.setMessage("Please Wait...");
         pDialog.setCancelable(true);
         pDialog.setCanceledOnTouchOutside(true);
-
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_charging);
+        binding.vFastcharging.setOnClickListener(this);
+        binding.vSlowcharging.setOnClickListener(this);
+        binding.toolbar.tvTitle.setText("CHARGING POINT");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        cd = new ConnectionDetector(mContext);
 
+        setuptabs();
+
+    }
+
+    private void setuptabs() {
+        binding.vFastcharging.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1_selected));
+        binding.vSlowcharging.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_3));
+
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private void fetchdata() {
@@ -76,7 +106,7 @@ public class ActivityCertificationCenter extends FragmentActivity implements OnM
                 if (response.isSuccessful()) {
                     List<CertificationMap> rs = response.body();
                     if (rs.size() > 0) {
-                       // CUtils.showToastShort(mContext, "" + rs.size());
+                        // CUtils.showToastShort(mContext, "" + rs.size());
                         mMap.clear();
                         bangaloreRoute.clear();
                         for (int i = 0; i < rs.size(); i++) {
@@ -105,7 +135,7 @@ public class ActivityCertificationCenter extends FragmentActivity implements OnM
                             //m.showInfoWindow();
                             // m.setOnc
                         }
-                        if(bangaloreRoute.size()>0){
+                        if (bangaloreRoute.size() > 0) {
                             zoomRoute(mMap, bangaloreRoute);
                         }
 
@@ -133,16 +163,6 @@ public class ActivityCertificationCenter extends FragmentActivity implements OnM
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding));
     }
 
-    private void drawmarkerstomap(Double latitude, Double longitude) {
-        LatLng latLng = new LatLng(latitude, longitude);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_demo_markers));
-        markerOptions.getPosition();
-
-        mMap.addMarker(markerOptions);
-    }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -164,6 +184,19 @@ public class ActivityCertificationCenter extends FragmentActivity implements OnM
         Intent i = new Intent(mContext, ActivityCertificationNavigation.class);
         i.putExtra("coordinates", "" + marker.getPosition());
         startActivity(i);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == binding.vFastcharging) {
+            binding.vFastcharging.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1_selected));
+            binding.vSlowcharging.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2_3));
+
+        } else if (v == binding.vSlowcharging) {
+            binding.vFastcharging.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab1));
+            binding.vSlowcharging.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.tab2));
+        }
 
     }
 }
