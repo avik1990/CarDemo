@@ -362,23 +362,16 @@ public class CUtils {
                 ((Activity) mContext).overridePendingTransition(0, 0);
             }
         }else if(id == R.id.navigation_more){
-
             PopupMenu popup = new PopupMenu(mContext, navigationView.findViewById(R.id.navigation_more));
-            //Inflating the Popup using xml file
             popup.getMenuInflater().inflate(R.menu.option_menu, popup.getMenu());
-
-            //registering popup with OnMenuItemClickListener
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {
                     Toast.makeText(mContext,"You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
-
             popup.show();
         }
-
-
     }
 
 
@@ -392,6 +385,4 @@ public class CUtils {
             item.setChecked(item.getItemId() == actionId);
         }*/
     }
-
-
 }
