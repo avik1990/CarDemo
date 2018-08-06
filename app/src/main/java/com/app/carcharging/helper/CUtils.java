@@ -2,8 +2,10 @@ package com.app.carcharging.helper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -15,11 +17,13 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.app.carcharging.ActivityNearby;
 import com.app.carcharging.Dashboard;
+import com.app.carcharging.LoginOptions;
 import com.app.carcharging.R;
 
 import java.lang.reflect.Field;
@@ -347,6 +351,41 @@ public class CUtils {
     }
 
 
+    public static void showLogoutAlert(final Context context, String msg, String title) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent profileintent = new Intent(context, LoginOptions.class);
+                context.startActivity(profileintent);
+                ((Activity) context).overridePendingTransition(R.anim.anim_in_reverse, R.anim.anim_out_reverse);
+                ((Activity) context).finishAffinity();
+                cleardata(context);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+        Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setTextColor(context.getResources().getColor(R.color.black));
+        Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+        nbutton.setTextColor(context.getResources().getColor(R.color.black));
+    }
+
+    public static void cleardata(Context mContext) {
+        SharedPreferences settings = mContext.getSharedPreferences("Kppref", Context.MODE_PRIVATE);
+        settings.edit().clear().apply();
+    }
+
+
     public static void openBottomNav(int id, final Context mContext, BottomNavigationView navigationView) {
         cd = new ConnectionDetector(mContext);
         if (id == R.id.navigation_home) {
@@ -366,7 +405,7 @@ public class CUtils {
             popup.getMenuInflater().inflate(R.menu.option_menu, popup.getMenu());
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {
-                    Toast.makeText(mContext,"You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                    showLogoutAlert(mContext,"Logout","Are you sure to logout?");
                     return true;
                 }
             });
